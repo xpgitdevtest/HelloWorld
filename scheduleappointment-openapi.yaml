@@ -1,0 +1,101 @@
+openapi: 3.0.0
+info:
+  description: "This is an Appointment Scheduling rest controller."
+  version: "1.0.0"
+  title: "Citizens Bank Schedule Appointment"
+tags:
+- name: "scheduleAppointment"
+  description: "Schedule Appointment"
+paths:
+  /scheduleAppointment:
+    post:
+      summary: Schedules an appointment
+      requestBody:
+        content:
+          application/json:
+            schema:      # Request body contents
+              $ref: "#/components/schemas/ScheduleAppointmentRequest"
+      tags:
+      - "saveAppointment"
+      description: ""
+      operationId: "scheduleAppointmentId"
+      responses:
+        200:
+          description: Schedule Appointment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleAppointmentResponse'   # Reference to an object
+        400:
+          description: Process Name required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorProcessNameRequiredAppointmentResponse'
+components:
+  schemas:
+    ScheduleAppointmentRequest:
+      type: "object"
+      properties:
+        CaseID:
+          type: "string"
+        ProcessName:
+          type: "string"
+        BankID:
+          type: "string"
+        BranchNum:
+          type: "string"
+        Date:
+          type: "string"
+        Timeblock:
+          type: "string"
+        TimeZone:
+          type: "string"
+        IsNewCustomer:
+          type: "string"
+        CustomerType:
+          type: "string"
+        FirstName:
+          type: "string"
+        LastName:
+          type: "string"
+        Email:
+          type: "string"
+        BusinessName:
+          type: "string"
+        PhonePreference:
+          type: "string"
+        HomePhoneNumber:
+          type: "string"
+        MobileNumber:
+          type: "string"
+        EmailConfirmation:
+          type: "string"
+        Source:
+          type: "string"
+        CancellationReason:
+          type: "string"
+        Comments:
+          type: "string"
+    ScheduleAppointmentResponse:
+      type: "object"
+      properties:
+        ReturnCode:
+          type: "string"
+        CaseID:
+          type: "string"
+        ReturnMessage:
+          type: "string"
+        PreCheckStatus:
+          type: "string"
+    ErrorProcessNameRequiredAppointmentResponse:
+      type: "object"
+      properties:
+        ReturnCode:
+          type: "string"
+        CaseID:
+          type: "string"
+        ReturnMessage:
+          type: "string"
+        PreCheckStatus:
+          type: "string"
